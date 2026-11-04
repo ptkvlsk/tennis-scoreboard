@@ -2,11 +2,11 @@ package com.boo4er;
 
 public interface Playable {
 
-    void scorePoint(GamePlayer player);
+      void scorePoint(GamePlayer player);
 
-    boolean isFinished();
+      boolean isFinished();
 
-    GamePlayer findWinner();
+      GamePlayer findWinner();
 
-    GameScore getScore();
+      GameScore getScore();
 }
