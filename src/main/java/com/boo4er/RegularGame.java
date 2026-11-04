@@ -16,7 +16,7 @@ public class RegularGame implements Playable {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return Math.abs(firstPlayerScore - secondPlayerScore) >= 2 && Math.max(firstPlayerScore, secondPlayerScore) >= 4;
     }
 
     @Override
