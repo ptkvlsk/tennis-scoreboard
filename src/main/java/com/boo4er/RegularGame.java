@@ -7,7 +7,11 @@ public class RegularGame implements Playable {
 
     @Override
     public void scorePoint(GamePlayer player) {
-
+        if (GamePlayer.FIRST == player) {
+            firstPlayerScore = firstPlayerScore + 1;
+        } else if (GamePlayer.SECOND == player) {
+            secondPlayerScore = secondPlayerScore + 1;
+        }
     }
 
     @Override
@@ -22,6 +26,6 @@ public class RegularGame implements Playable {
 
     @Override
     public GameScore getScore() {
-        return null;
+        return new GameScore(firstPlayerScore, secondPlayerScore);
     }
 }
