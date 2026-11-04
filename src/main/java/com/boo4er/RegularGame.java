@@ -30,7 +30,11 @@ public class RegularGame implements Playable {
 
     @Override
     public GamePlayer findWinner() {
-        return null;
+        if (!isFinished()) {
+            throw new IllegalStateException("Cannot find the winner: the game is not finished yet. Score: "
+                    + firstPlayerScore + ":" + secondPlayerScore);
+        }
+        return firstPlayerScore > secondPlayerScore ? GamePlayer.FIRST : GamePlayer.SECOND;
     }
 
     @Override
