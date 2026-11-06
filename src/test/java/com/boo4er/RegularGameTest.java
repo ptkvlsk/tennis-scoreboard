@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RegularGameTest {
 
@@ -53,7 +54,24 @@ public class RegularGameTest {
         scorePoints(regularGame, GamePlayer.FIRST, 3);
         scorePoints(regularGame, GamePlayer.SECOND, 2);
         scorePoints(regularGame, GamePlayer.FIRST, 1);
+        assertTrue(regularGame.isFinished());
         assertEquals(GamePlayer.FIRST, regularGame.findWinner());
+    }
+
+    @Test
+    void gameIsFinishedWhenSecondPlayerScoredFourPoints() {
+        RegularGame regularGame = new RegularGame();
+        scorePoints(regularGame, GamePlayer.SECOND, 4);
+        assertTrue(regularGame.isFinished());
+        assertEquals(GamePlayer.SECOND, regularGame.findWinner());
+    }
+
+    @Test
+    void gameThrowsExceptionWhenFirstPlayerScoredTwoPointsAndSecondPlayerScoredOnePoint() {
+        RegularGame regularGame = new RegularGame();
+        scorePoints(regularGame, GamePlayer.FIRST, 2);
+        scorePoints(regularGame, GamePlayer.SECOND, 1);
+        assertThrows(IllegalStateException.class, () -> regularGame.findWinner());
     }
 
 }
