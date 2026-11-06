@@ -74,4 +74,11 @@ public class RegularGameTest {
         assertThrows(IllegalStateException.class, () -> regularGame.findWinner());
     }
 
+    @Test
+    void scorePointThrowsExceptionWhenGameIsFinished() {
+        RegularGame regularGame = new RegularGame();
+        scorePoints(regularGame, GamePlayer.FIRST, 4);
+        assertThrows(IllegalStateException.class, () -> regularGame.scorePoint(GamePlayer.SECOND));
+    }
+
 }
