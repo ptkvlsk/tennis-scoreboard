@@ -81,4 +81,23 @@ public class RegularGameTest {
         assertThrows(IllegalStateException.class, () -> regularGame.scorePoint(GamePlayer.SECOND));
     }
 
+    @Test
+    void gameIsNotFinishedWhenFirstPlayerScoredThreePointsAndSecondPlayerScoredOnePoint() {
+        RegularGame regularGame = new RegularGame();
+        scorePoints(regularGame, GamePlayer.FIRST, 3);
+        scorePoints(regularGame, GamePlayer.SECOND, 1);
+        assertFalse(regularGame.isFinished());
+    }
+
+    @Test
+    void gameIsNotFinishedWhenFirstPlayerScoredFivePointsAndSecondPlayerScoredFivePoints() {
+        RegularGame regularGame = new RegularGame();
+        scorePoints(regularGame, GamePlayer.FIRST, 3);
+        scorePoints(regularGame, GamePlayer.SECOND, 4);
+        scorePoints(regularGame, GamePlayer.FIRST, 1);
+        scorePoints(regularGame, GamePlayer.SECOND, 1);
+        scorePoints(regularGame, GamePlayer.FIRST, 1);
+        assertFalse(regularGame.isFinished());
+    }
+
 }
