@@ -100,4 +100,16 @@ public class RegularGameTest {
         assertFalse(regularGame.isFinished());
     }
 
+    @Test
+    void gameIsFinishedWhenFirstPlayerScoredSevenPointsAndSecondPlayerScoredFivePoints() {
+        RegularGame regularGame = new RegularGame();
+        scorePoints(regularGame, GamePlayer.FIRST, 3);
+        scorePoints(regularGame, GamePlayer.SECOND, 4);
+        scorePoints(regularGame, GamePlayer.FIRST, 1);
+        scorePoints(regularGame, GamePlayer.SECOND, 1);
+        scorePoints(regularGame, GamePlayer.FIRST, 1);
+        scorePoints(regularGame, GamePlayer.FIRST, 2);
+        assertTrue(regularGame.isFinished());
+        assertEquals(GamePlayer.FIRST, regularGame.findWinner());
+    }
 }
