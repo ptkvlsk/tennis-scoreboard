@@ -38,4 +38,13 @@ public class RegularGameTest {
         assertFalse(regularGame.isFinished());
     }
 
+    @Test
+    void gameIsNotFinishedWhenFirstPlayerScoredFivePointsAndSecondPlayerScoredFourPoints() {
+        RegularGame regularGame = new RegularGame();
+        scorePoints(regularGame, GamePlayer.FIRST, 3);
+        scorePoints(regularGame, GamePlayer.SECOND, 4);
+        scorePoints(regularGame, GamePlayer.FIRST, 2);
+        assertFalse(regularGame.isFinished());
+    }
+
 }
