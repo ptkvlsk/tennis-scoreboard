@@ -108,7 +108,9 @@ public class RegularGameTest {
         scorePoints(regularGame, GamePlayer.FIRST, 1);
         scorePoints(regularGame, GamePlayer.SECOND, 1);
         scorePoints(regularGame, GamePlayer.FIRST, 1);
-        scorePoints(regularGame, GamePlayer.FIRST, 2);
+        scorePoints(regularGame, GamePlayer.FIRST, 1);
+        assertFalse(regularGame.isFinished());
+        scorePoints(regularGame, GamePlayer.FIRST, 1);
         assertTrue(regularGame.isFinished());
         assertEquals(GamePlayer.FIRST, regularGame.findWinner());
     }
