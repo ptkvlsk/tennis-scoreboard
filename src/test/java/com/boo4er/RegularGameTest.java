@@ -110,4 +110,10 @@ public class RegularGameTest {
         assertTrue(regularGame.isFinished());
         assertEquals(GamePlayer.FIRST, regularGame.findWinner());
     }
+
+    @Test
+    void gameIsRegularWhenGameCreated() {
+        RegularGame regularGame = new RegularGame();
+        assertEquals(GameType.REGULAR, regularGame.getGameType());
+    }
 }

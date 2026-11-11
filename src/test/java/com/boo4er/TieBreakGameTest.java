@@ -78,4 +78,9 @@ public class TieBreakGameTest {
         assertThrows(IllegalStateException.class, () -> tieBreakGame.scorePoint(GamePlayer.SECOND));
     }
 
+    @Test
+    void gameIsTieBreakWhenGameCreated() {
+        TieBreakGame tieBreakGame = new TieBreakGame();
+        assertEquals(GameType.TIE_BREAK, tieBreakGame.getGameType());
+    }
 }

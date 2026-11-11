@@ -8,4 +8,9 @@ public class RegularGame extends AbstractTwoPointsLeadGame {
     protected int minPointsToWin() {
         return MIN_POINTS_TO_WIN_GAME;
     }
+
+    @Override
+    public GameType getGameType() {
+        return GameType.REGULAR;
+    }
 }
