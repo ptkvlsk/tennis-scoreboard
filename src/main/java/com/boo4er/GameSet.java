@@ -16,4 +16,8 @@ public class GameSet {
     private Playable currentGame() {
         return games.get(games.size() - 1);
     }
+
+    public void scorePoint(GamePlayer player) {
+        currentGame().scorePoint(player);
+    }
 }
