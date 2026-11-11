@@ -12,4 +12,8 @@ public class GameSet {
     public GameSet() {
         games.add(new RegularGame());
     }
+
+    private Playable currentGame() {
+        return games.get(games.size() - 1);
+    }
 }
