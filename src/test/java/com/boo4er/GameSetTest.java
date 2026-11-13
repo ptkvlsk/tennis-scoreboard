@@ -14,6 +14,19 @@ public class GameSetTest {
         gameSet.scorePoint(GamePlayer.FIRST);
         gameSet.scorePoint(GamePlayer.FIRST);
         assertEquals(new SetScore(1, 0), gameSet.getScore());
+    }
 
+    @Test
+    void setScoreIsTwoToZeroWhenFirstPlayerScoredEightPoints() {
+        GameSet gameSet = new GameSet();
+        gameSet.scorePoint(GamePlayer.FIRST);
+        gameSet.scorePoint(GamePlayer.FIRST);
+        gameSet.scorePoint(GamePlayer.FIRST);
+        gameSet.scorePoint(GamePlayer.FIRST);
+        gameSet.scorePoint(GamePlayer.FIRST);
+        gameSet.scorePoint(GamePlayer.FIRST);
+        gameSet.scorePoint(GamePlayer.FIRST);
+        gameSet.scorePoint(GamePlayer.FIRST);
+        assertEquals(new SetScore(2, 0), gameSet.getScore());
     }
 }
