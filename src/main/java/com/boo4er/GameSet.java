@@ -26,6 +26,7 @@ public class GameSet {
             } else if (GamePlayer.SECOND == winner) {
                 secondPlayerGames = secondPlayerGames + 1;
             }
+            games.add(new RegularGame());
         }
     }
 
