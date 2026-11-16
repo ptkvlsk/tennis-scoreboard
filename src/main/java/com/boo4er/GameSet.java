@@ -1,7 +1,7 @@
 package com.boo4er;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameSet {
 
@@ -21,7 +21,14 @@ public class GameSet {
     }
 
     public void scorePoint(GamePlayer player) {
+
+        if (isFinished()) {
+            throw new IllegalStateException("Cannot score a point: the set is already finished. Games: "
+                    + firstPlayerGames + ":" + secondPlayerGames);
+        }
+
         currentGame().scorePoint(player);
+
         if (currentGame().isFinished()) {
             GamePlayer winner = currentGame().findWinner();
             if (GamePlayer.FIRST == winner) {

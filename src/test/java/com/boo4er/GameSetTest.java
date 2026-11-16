@@ -112,4 +112,16 @@ public class GameSetTest {
         scoreFreshGame(gameSet, GamePlayer.SECOND);
         assertTrue(gameSet.isFinished());
     }
+
+    @Test
+    void scorePointThrowsExceptionWhenSetIsFinished() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        assertThrows(IllegalStateException.class, () -> gameSet.scorePoint(GamePlayer.FIRST));
+    }
 }
