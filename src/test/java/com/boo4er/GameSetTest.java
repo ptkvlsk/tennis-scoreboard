@@ -124,4 +124,39 @@ public class GameSetTest {
         scoreFreshGame(gameSet, GamePlayer.FIRST);
         assertThrows(IllegalStateException.class, () -> gameSet.scorePoint(GamePlayer.FIRST));
     }
+
+    @Test
+    void gameTypeRegularTieBreakIsNotStartedWhenFirstPlayerWinFiveGamesAndSecondPlayerWinFiveGames() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        assertEquals(GameType.REGULAR, gameSet.gameType());
+
+    }
+
+    @Test
+    void gameTypeTieBreakIsStartedWhenFirstPlayerWinSixGamesAndSecondPlayerWinSixGames() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        assertEquals(GameType.TIE_BREAK, gameSet.gameType());
+    }
 }

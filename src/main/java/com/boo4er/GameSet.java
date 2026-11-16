@@ -7,6 +7,7 @@ public class GameSet {
 
     private static final int MIN_LEAD_GAME_TO_WIN_SET = 2;
     private static final int MIN_GAME_TO_WIN_SET = 6;
+    private static final int MIN_GAME_TO_START_TIE_BREAK = 6;
     private int firstPlayerGames;
     private int secondPlayerGames;
 
@@ -36,7 +37,13 @@ public class GameSet {
             } else if (GamePlayer.SECOND == winner) {
                 secondPlayerGames = secondPlayerGames + 1;
             }
-            games.add(new RegularGame());
+            if (!isFinished()) {
+                if (firstPlayerGames == MIN_GAME_TO_START_TIE_BREAK && secondPlayerGames == MIN_GAME_TO_START_TIE_BREAK) {
+                    games.add(new TieBreakGame());
+                } else {
+                    games.add(new RegularGame());
+                }
+            }
         }
     }
 
@@ -49,4 +56,7 @@ public class GameSet {
                 && Math.max(firstPlayerGames, secondPlayerGames) >= MIN_GAME_TO_WIN_SET;
     }
 
+    public GameType gameType() {
+        return currentGame().getGameType();
+    }
 }
