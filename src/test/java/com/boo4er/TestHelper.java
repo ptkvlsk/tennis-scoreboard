@@ -10,7 +10,7 @@ public class TestHelper {
         }
     }
 
-    static void scoreGame(GameSet gameSet, GamePlayer player) {
+    static void scoreFreshGame(GameSet gameSet, GamePlayer player) {
         for (int i = 0; i < POINTS_TO_WIN_GAME; i++) {
             gameSet.scorePoint(player);
         }
