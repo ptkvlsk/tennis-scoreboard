@@ -1,31 +1,16 @@
 package com.boo4er;
 
-public class RegularGame implements Playable {
+public class RegularGame extends AbstractTwoPointsLeadGame {
 
-    private int firstPlayerScore;
-    private int secondPlayerScore;
+    private static final int MIN_POINTS_TO_WIN_GAME = 4;
 
     @Override
-    public void scorePoint(GamePlayer player) {
-        if (GamePlayer.FIRST == player) {
-            firstPlayerScore = firstPlayerScore + 1;
-        } else if (GamePlayer.SECOND == player) {
-            secondPlayerScore = secondPlayerScore + 1;
-        }
+    protected int minPointsToWin() {
+        return MIN_POINTS_TO_WIN_GAME;
     }
 
     @Override
-    public boolean isFinished() {
-        return Math.abs(firstPlayerScore - secondPlayerScore) >= 2 && Math.max(firstPlayerScore, secondPlayerScore) >= 4;
-    }
-
-    @Override
-    public GamePlayer findWinner() {
-        return null;
-    }
-
-    @Override
-    public GameScore getScore() {
-        return new GameScore(firstPlayerScore, secondPlayerScore);
+    public GameType getGameType() {
+        return GameType.REGULAR;
     }
 }
