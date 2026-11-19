@@ -3,6 +3,7 @@ package com.boo4er;
 import org.junit.jupiter.api.Test;
 
 import static com.boo4er.TestHelper.scoreFreshGame;
+import static com.boo4er.TestHelper.scoreFreshTieBreak;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameSetTest {
@@ -158,5 +159,43 @@ public class GameSetTest {
         scoreFreshGame(gameSet, GamePlayer.FIRST);
         scoreFreshGame(gameSet, GamePlayer.SECOND);
         assertEquals(GameType.TIE_BREAK, gameSet.gameType());
+    }
+
+    @Test
+    void setIsFinishedWhenFirstPlayerWinTieBreak() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshTieBreak(gameSet, GamePlayer.FIRST);
+        assertTrue(gameSet.isFinished());
+    }
+
+    @Test
+    void setIsFinishedWhenSecondPlayerWinTieBreak() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshTieBreak(gameSet, GamePlayer.SECOND);
+        assertTrue(gameSet.isFinished());
     }
 }

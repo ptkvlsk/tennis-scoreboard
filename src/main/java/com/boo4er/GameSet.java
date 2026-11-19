@@ -8,6 +8,7 @@ public class GameSet {
     private static final int MIN_LEAD_GAME_TO_WIN_SET = 2;
     private static final int MIN_GAME_TO_WIN_SET = 6;
     private static final int MIN_GAME_TO_START_TIE_BREAK = 6;
+    private static final int MIN_GAME_TO_WIN_TIE_BREAK = 7;
     private int firstPlayerGames;
     private int secondPlayerGames;
 
@@ -52,8 +53,11 @@ public class GameSet {
     }
 
     public boolean isFinished() {
-        return Math.abs(firstPlayerGames - secondPlayerGames) >= MIN_LEAD_GAME_TO_WIN_SET
+        boolean wonByLead = Math.abs(firstPlayerGames - secondPlayerGames) >= MIN_LEAD_GAME_TO_WIN_SET
                 && Math.max(firstPlayerGames, secondPlayerGames) >= MIN_GAME_TO_WIN_SET;
+        boolean wonByTieBreak = Math.min(firstPlayerGames, secondPlayerGames) == MIN_GAME_TO_START_TIE_BREAK
+                && Math.max(firstPlayerGames, secondPlayerGames) == MIN_GAME_TO_WIN_TIE_BREAK;
+        return wonByLead || wonByTieBreak;
     }
 
     public GameType gameType() {

@@ -3,6 +3,7 @@ package com.boo4er;
 public class TestHelper {
 
     private static final int POINTS_TO_WIN_GAME = 4;
+    private static final int POINT_TO_WIN_TIE_BREAK = 7;
 
     static void scorePoints(Playable game, GamePlayer player, int count) {
         for (int i = 0; i < count; i++) {
@@ -16,4 +17,9 @@ public class TestHelper {
         }
     }
 
+    static void scoreFreshTieBreak(GameSet gameSet, GamePlayer player) {
+        for (int i = 0; i < POINT_TO_WIN_TIE_BREAK; i++) {
+            gameSet.scorePoint(player);
+        }
+    }
 }
