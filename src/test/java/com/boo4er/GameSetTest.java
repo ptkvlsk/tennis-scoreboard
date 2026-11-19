@@ -178,6 +178,7 @@ public class GameSetTest {
         scoreFreshGame(gameSet, GamePlayer.FIRST);
         scoreFreshTieBreak(gameSet, GamePlayer.FIRST);
         assertTrue(gameSet.isFinished());
+        assertEquals(GamePlayer.FIRST, gameSet.findWinner());
     }
 
     @Test
@@ -197,5 +198,64 @@ public class GameSetTest {
         scoreFreshGame(gameSet, GamePlayer.FIRST);
         scoreFreshTieBreak(gameSet, GamePlayer.SECOND);
         assertTrue(gameSet.isFinished());
+        assertEquals(GamePlayer.SECOND, gameSet.findWinner());
+    }
+
+    @Test
+    void setIsFinishedWhenFirstPlayerWinSixGames() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        assertEquals(GamePlayer.FIRST, gameSet.findWinner());
+    }
+
+    @Test
+    void setIsFinishedWhenSecondPlayerWinSixGames() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        assertEquals(GamePlayer.SECOND, gameSet.findWinner());
+    }
+
+    @Test
+    void setIsFinishedWhenSecondPlayerWinFiveGamesAndFirstPlayerWinSevenGames() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        assertEquals(GamePlayer.FIRST, gameSet.findWinner());
+    }
+
+    @Test
+    void setThrowsExceptionWhenFirstPlayerWinFiveGamesAndSecondPlayerWinFiveGames() {
+        GameSet gameSet = new GameSet();
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.FIRST);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        scoreFreshGame(gameSet, GamePlayer.SECOND);
+        assertThrows(IllegalStateException.class, () -> gameSet.findWinner());
     }
 }

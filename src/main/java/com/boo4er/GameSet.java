@@ -63,4 +63,12 @@ public class GameSet {
     public GameType gameType() {
         return currentGame().getGameType();
     }
+
+    public GamePlayer findWinner() {
+        if (!isFinished()) {
+            throw new IllegalStateException("Cannot find the winner: the set is not finished yet. Games:  " +
+                    firstPlayerGames + ":" + secondPlayerGames);
+        }
+        return firstPlayerGames > secondPlayerGames ? GamePlayer.FIRST : GamePlayer.SECOND;
+    }
 }
