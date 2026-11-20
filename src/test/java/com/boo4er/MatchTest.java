@@ -54,4 +54,37 @@ public class MatchTest {
         scoreFreshSet(match, GamePlayer.FIRST);
         assertThrows(IllegalStateException.class, () -> match.scorePoint(GamePlayer.FIRST));
     }
+
+    @Test
+    void firstPlayerWinMatchWhenFirstPlayerWinTwoSets() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        scoreFreshSet(match, GamePlayer.FIRST);
+        assertEquals(GamePlayer.FIRST, match.findWinner());
+    }
+
+    @Test
+    void secondPlayerWinMatchWhenSecondPlayerWinTwoSets() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.SECOND);
+        scoreFreshSet(match, GamePlayer.SECOND);
+        assertEquals(GamePlayer.SECOND, match.findWinner());
+    }
+
+    @Test
+    void firstPlayerWinMatchWhenFirstPlayerWinTwoSetsAndSecondPlayerWinOneSet() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        scoreFreshSet(match, GamePlayer.SECOND);
+        scoreFreshSet(match, GamePlayer.FIRST);
+        assertEquals(GamePlayer.FIRST, match.findWinner());
+    }
+
+    @Test
+    void matchThrowsExceptionWhenFirstPlayerWinOneSet() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        assertThrows(IllegalStateException.class, () -> match.findWinner());
+    }
+
 }

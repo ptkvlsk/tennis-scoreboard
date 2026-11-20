@@ -45,4 +45,12 @@ public class Match {
     public boolean isFinished() {
         return Math.max(firstPlayerSets, secondPlayerSets) >= MIN_SETS_TO_WIN_MATCH;
     }
+
+    public GamePlayer findWinner() {
+        if (!isFinished()) {
+            throw new IllegalStateException("Cannot find the winner: the match is not finished yet. Sets score: " +
+                    firstPlayerSets + ":" + secondPlayerSets);
+        }
+        return firstPlayerSets > secondPlayerSets ? GamePlayer.FIRST : GamePlayer.SECOND;
+    }
 }
