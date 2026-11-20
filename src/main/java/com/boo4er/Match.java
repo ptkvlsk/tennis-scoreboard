@@ -36,6 +36,9 @@ public class Match {
             } else if (GamePlayer.SECOND == winner) {
                 secondPlayerSets = secondPlayerSets + 1;
             }
+            if (!isFinished()) {
+                sets.add(new GameSet());
+            }
         }
     }
 
