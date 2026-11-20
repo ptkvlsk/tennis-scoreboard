@@ -15,10 +15,43 @@ public class MatchTest {
     }
 
     @Test
-    void matchIsFinishedWhenFirstPlayerWinTwoSet() {
+    void matchIsFinishedWhenFirstPlayerWinTwoSets() {
         Match match = new Match();
         scoreFreshSet(match, GamePlayer.FIRST);
         scoreFreshSet(match, GamePlayer.FIRST);
         assertTrue(match.isFinished());
+    }
+
+    @Test
+    void matchIsFinishedWhenFirstPlayerWinTwoSetsAndSecondPlayerWinOneSet() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        scoreFreshSet(match, GamePlayer.SECOND);
+        scoreFreshSet(match, GamePlayer.FIRST);
+        assertTrue(match.isFinished());
+    }
+
+    @Test
+    void matchIsNotFinishedWhenFirstPlayerWinOneSetAndSecondPlayerWinOneSet() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        scoreFreshSet(match, GamePlayer.SECOND);
+        assertFalse(match.isFinished());
+    }
+
+    @Test
+    void matchIsFinishedWhenSecondPlayerWinTwoSets() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.SECOND);
+        scoreFreshSet(match, GamePlayer.SECOND);
+        assertTrue(match.isFinished());
+    }
+
+    @Test
+    void scorePointsThrowsExceptionWhenMatchIsFinished() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        scoreFreshSet(match, GamePlayer.FIRST);
+        assertThrows(IllegalStateException.class, () -> match.scorePoint(GamePlayer.FIRST));
     }
 }
