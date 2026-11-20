@@ -23,16 +23,19 @@ public class Match {
     public void scorePoint(GamePlayer player) {
 
         if (isFinished()) {
-            throw new IllegalStateException("Cannot score a point: the game is already finished. Score: "
+            throw new IllegalStateException("Cannot score a point: the match is already finished. Sets score: "
                     + firstPlayerSets + ":" + secondPlayerSets);
         }
+
         currentSet().scorePoint(player);
 
-        GamePlayer winner = currentSet().findWinner();
-        if (GamePlayer.FIRST == winner) {
-            firstPlayerSets = firstPlayerSets + 1;
-        } else if (GamePlayer.SECOND == winner) {
-            secondPlayerSets = secondPlayerSets + 1;
+        if (currentSet().isFinished()) {
+            GamePlayer winner = currentSet().findWinner();
+            if (GamePlayer.FIRST == winner) {
+                firstPlayerSets = firstPlayerSets + 1;
+            } else if (GamePlayer.SECOND == winner) {
+                secondPlayerSets = secondPlayerSets + 1;
+            }
         }
     }
 

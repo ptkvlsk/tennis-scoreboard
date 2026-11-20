@@ -4,7 +4,7 @@ public class TestHelper {
 
     private static final int POINTS_TO_WIN_GAME = 4;
     private static final int POINT_TO_WIN_TIE_BREAK = 7;
-    private static final int POINT_TO_WIN_SET = 6;
+    private static final int POINT_TO_WIN_SET = 24;
 
     static void scorePoints(Playable game, GamePlayer player, int count) {
         for (int i = 0; i < count; i++) {
