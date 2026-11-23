@@ -71,4 +71,8 @@ public class GameSet {
         }
         return firstPlayerGames > secondPlayerGames ? GamePlayer.FIRST : GamePlayer.SECOND;
     }
+
+    public GameScore getCurrentGameScore() {
+        return currentGame().getScore();
+    }
 }

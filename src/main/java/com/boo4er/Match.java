@@ -53,4 +53,8 @@ public class Match {
         }
         return firstPlayerSets > secondPlayerSets ? GamePlayer.FIRST : GamePlayer.SECOND;
     }
+
+    public MatchScore getMatchScore() {
+        return new MatchScore(firstPlayerSets, secondPlayerSets);
+    }
 }

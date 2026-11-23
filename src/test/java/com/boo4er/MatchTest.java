@@ -87,4 +87,16 @@ public class MatchTest {
         assertThrows(IllegalStateException.class, () -> match.findWinner());
     }
 
+    @Test
+    void matchScoreIsZeroToZeroWhenMatchStarts() {
+        Match match = new Match();
+        assertEquals(new MatchScore(0, 0), match.getMatchScore());
+    }
+
+    @Test
+    void matchScoreIsOneToZeroWhenFirstPlayerWinOneSet() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        assertEquals(new MatchScore(1, 0), match.getMatchScore());
+    }
 }
