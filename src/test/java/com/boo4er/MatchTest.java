@@ -2,6 +2,7 @@ package com.boo4er;
 
 import org.junit.jupiter.api.Test;
 
+import static com.boo4er.TestHelper.scoreFreshGame;
 import static com.boo4er.TestHelper.scoreFreshSet;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -145,5 +146,29 @@ public class MatchTest {
         Match match = new Match();
         scoreFreshSet(match, GamePlayer.FIRST);
         assertEquals(new SetScore(0, 0), match.getCurrentSetScore());
+    }
+
+    @Test
+    void gameIsRegularWhenMatchStarts() {
+        Match match = new Match();
+        assertEquals(GameType.REGULAR, match.getGameType());
+    }
+
+    @Test
+    void gameIsTieBreakWhenFirstPlayerWinSixGamesAndSecondPlayerWinSixGames() {
+        Match match = new Match();
+        scoreFreshGame(match, GamePlayer.FIRST);
+        scoreFreshGame(match, GamePlayer.FIRST);
+        scoreFreshGame(match, GamePlayer.FIRST);
+        scoreFreshGame(match, GamePlayer.FIRST);
+        scoreFreshGame(match, GamePlayer.FIRST);
+        scoreFreshGame(match, GamePlayer.SECOND);
+        scoreFreshGame(match, GamePlayer.SECOND);
+        scoreFreshGame(match, GamePlayer.SECOND);
+        scoreFreshGame(match, GamePlayer.SECOND);
+        scoreFreshGame(match, GamePlayer.SECOND);
+        scoreFreshGame(match, GamePlayer.SECOND);
+        scoreFreshGame(match, GamePlayer.FIRST);
+        assertEquals(GameType.TIE_BREAK, match.getGameType());
     }
 }

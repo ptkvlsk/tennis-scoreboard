@@ -29,4 +29,10 @@ public class TestHelper {
             match.scorePoint(player);
         }
     }
+
+    static void scoreFreshGame(Match match, GamePlayer player) {
+        for (int i = 0; i < POINTS_TO_WIN_GAME; i++) {
+            match.scorePoint(player);
+        }
+    }
 }

@@ -65,4 +65,8 @@ public class Match {
     public SetScore getCurrentSetScore() {
         return currentSet().getScore();
     }
+
+    public GameType getGameType() {
+        return currentSet().gameType();
+    }
 }
