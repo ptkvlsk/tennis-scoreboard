@@ -99,4 +99,27 @@ public class MatchTest {
         scoreFreshSet(match, GamePlayer.FIRST);
         assertEquals(new MatchScore(1, 0), match.getMatchScore());
     }
+
+    @Test
+    void gameScoreIsZeroToZeroWhenGameStarts() {
+        Match match = new Match();
+        assertEquals(new GameScore(0, 0), match.getCurrentMatchScore());
+    }
+
+    @Test
+    void gameScoreIsZeroToZeroWhenFirstPlayerWinGame() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        assertEquals(new GameScore(0, 0), match.getCurrentMatchScore());
+    }
+
+    @Test
+    void gameScoreIsThreeToZeroWhenFirstPlayerScoredThreePoints() {
+        Match match = new Match();
+        match.scorePoint(GamePlayer.FIRST);
+        match.scorePoint(GamePlayer.FIRST);
+        match.scorePoint(GamePlayer.FIRST);
+        assertEquals(new GameScore(3, 0), match.getCurrentMatchScore());
+
+    }
 }

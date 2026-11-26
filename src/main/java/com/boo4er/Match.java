@@ -57,4 +57,8 @@ public class Match {
     public MatchScore getMatchScore() {
         return new MatchScore(firstPlayerSets, secondPlayerSets);
     }
+
+    public GameScore getCurrentMatchScore() {
+        return currentSet().getCurrentGameScore();
+    }
 }
