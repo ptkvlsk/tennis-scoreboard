@@ -103,14 +103,14 @@ public class MatchTest {
     @Test
     void gameScoreIsZeroToZeroWhenGameStarts() {
         Match match = new Match();
-        assertEquals(new GameScore(0, 0), match.getCurrentMatchScore());
+        assertEquals(new GameScore(0, 0), match.getCurrentGameScore());
     }
 
     @Test
     void gameScoreIsZeroToZeroWhenFirstPlayerWinGame() {
         Match match = new Match();
         scoreFreshSet(match, GamePlayer.FIRST);
-        assertEquals(new GameScore(0, 0), match.getCurrentMatchScore());
+        assertEquals(new GameScore(0, 0), match.getCurrentGameScore());
     }
 
     @Test
@@ -119,7 +119,31 @@ public class MatchTest {
         match.scorePoint(GamePlayer.FIRST);
         match.scorePoint(GamePlayer.FIRST);
         match.scorePoint(GamePlayer.FIRST);
-        assertEquals(new GameScore(3, 0), match.getCurrentMatchScore());
+        assertEquals(new GameScore(3, 0), match.getCurrentGameScore());
 
+    }
+
+    @Test
+    void setScoreIsOneToZeroWhenFirstPlayerScoredFourPoints() {
+        Match match = new Match();
+        match.scorePoint(GamePlayer.FIRST);
+        match.scorePoint(GamePlayer.FIRST);
+        match.scorePoint(GamePlayer.FIRST);
+        match.scorePoint(GamePlayer.FIRST);
+        assertEquals(new SetScore(1, 0), match.getCurrentSetScore());
+
+    }
+
+    @Test
+    void setScoreIsZeroToZeroWhenSetStarts() {
+        Match match = new Match();
+        assertEquals(new SetScore(0, 0), match.getCurrentSetScore());
+    }
+
+    @Test
+    void setScoreIsZeroToZeroWhenStartsFreshSet() {
+        Match match = new Match();
+        scoreFreshSet(match, GamePlayer.FIRST);
+        assertEquals(new SetScore(0, 0), match.getCurrentSetScore());
     }
 }
